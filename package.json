@@ -1,6 +1,6 @@
 {
   "name": "notion-page-to-html-api",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Vercel API wrapper to notion-page-to-html library",
   "main": "src/index.ts",
   "scripts": {
@@ -30,5 +30,6 @@
   },
   "dependencies": {
     "notion-page-to-html": "^1.2.0"
-  }
+  },
+  "packageManager": "yarn@4.12.0"
 }
