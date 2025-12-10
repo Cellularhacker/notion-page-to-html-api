@@ -1,18 +1,18 @@
-import { NowRequest, NowResponse } from '@vercel/node';
+import { VercelRequest, VercelResponse } from '@vercel/node';
 import NotionPageToHtml from 'notion-page-to-html';
 import { MissingIdError } from '../_errors/missing-id';
 
-export default async (request: NowRequest, response: NowResponse): Promise<void | NowResponse> => {
+export default async (request: VercelRequest, response: VercelResponse): Promise<void | VercelResponse> => {
   try {
     const { id } = request.query;
-    if (!id) throw new MissingIdError();
+    if (!id) return Promise.reject(new MissingIdError());
 
     const url = `https://notion.so/${id}`;
     const content = await NotionPageToHtml.convert(url);
     const { html } = content;
 
     response.setHeader('Content-Type', 'text/html');
-    response.status(200).send(html);
+    return response.status(200).send(html);
   } catch (err) {
     switch (err.name) {
       case 'MissingIdError':
