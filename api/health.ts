@@ -1,5 +1,5 @@
-import { NowRequest, NowResponse } from '@vercel/node';
+import { VercelRequest, VercelResponse } from '@vercel/node';
 
-export default (_request: NowRequest, response: NowResponse): void => {
-  response.status(200).send('OK!');
+export default async (_request: VercelRequest, response: VercelResponse): Promise<void | VercelResponse> => {
+  return response.status(200).send('OK!');
 };
